@@ -443,6 +443,124 @@
 
 
   
+    <article id="post-不使用中间变量交换两数(C语言实现)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/" class="article-date">
+      <time datetime="2019-11-30T13:20:02.943Z" itemprop="datePublished">2019-11-30</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/">不使用中间变量交换两数(C语言实现)</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<h2 id="title：不使用中间变量交换两数的方法（C语言）"><a href="#title：不使用中间变量交换两数的方法（C语言）" class="headerlink" title="title：不使用中间变量交换两数的方法（C语言）"></a>title：不使用中间变量交换两数的方法（C语言）</h2><h1 id="不使用中间变量交换两数的方法（C语言）"><a href="#不使用中间变量交换两数的方法（C语言）" class="headerlink" title="不使用中间变量交换两数的方法（C语言）"></a>不使用中间变量交换两数的方法（C语言）</h1><h2 id="一-加减法"><a href="#一-加减法" class="headerlink" title="一.加减法"></a>一.加减法</h2><ul>
+<li><h5 id="存和法"><a href="#存和法" class="headerlink" title="存和法"></a>存和法</h5></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a+b;</span><br><span class="line">b=a-b;<span class="comment">//b=(a+b)-b=a</span></span><br><span class="line">a=a-b;<span class="comment">//a=(a+b)-a=b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b+a-(b=a);<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="存差法"><a href="#存差法" class="headerlink" title="存差法"></a>存差法</h5></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a-b;</span><br><span class="line">b=a+b;<span class="comment">//b=(a-b)+b=a</span></span><br><span class="line">a=b-a;<span class="comment">//a=a-(a-b)=b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b-a+(b=a);<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.交换整形和浮点型时可能发生精度缺失</u></p>
+<p>​            <u>2.存和法+运算中，可能产生溢出(int型32位)，虽然不影响结果，但不安全</u></p>
+<hr>
+<h2 id="二-乘除法"><a href="#二-乘除法" class="headerlink" title="二.乘除法"></a>二.乘除法</h2><ul>
+<li><h5 id="存积法"><a href="#存积法" class="headerlink" title="存积法"></a>存积法</h5></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a*b;</span><br><span class="line">b=a/b;<span class="comment">//b=(a*b)/b=a</span></span><br><span class="line">a=a/b;<span class="comment">//a=(a*b)/a=b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b*a/(b=a);<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.交换整数和浮点数时可能发生精度缺失</u></p>
+<p>​            <u>2.a和b的初值都不能为0</u></p>
+<p>​            <u>3.存积法中乘运算比加更容易溢出(显然)，同样不影响结果(仍然不安全)</u></u></p>
+<p>​            <u>4.存商法过于局限，C语言中除法运算结果为整数，只有两个整数成倍数关系时，才可能结果正确。</u></u></p>
+<hr>
+<h2 id="三-异或法"><a href="#三-异或法" class="headerlink" title="三.异或法"></a>三.异或法</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a^=b;       </span><br><span class="line">b^=a;<span class="comment">//b=b^(a^b)=b^b^a=0^a=a    </span></span><br><span class="line">a^=b;<span class="comment">//a=(a^b)^a=a^a^b=0^b=b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a^=b^=a^=b;<span class="comment">//有点绕</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.只能进行整形间的交换(但是不溢出)</u></p>
+<hr>
+<h2 id="四-同或法"><a href="#四-同或法" class="headerlink" title="四.同或法"></a>四.同或法</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a&amp;b|~a&amp;~b;<span class="comment">//a=a⊙b</span></span><br><span class="line">b=a&amp;b|~a&amp;~b;<span class="comment">//b=a⊙b</span></span><br><span class="line">a=a&amp;b|~a&amp;~b;<span class="comment">//a=a⊙b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我也不知道怎么简写</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.c语言没同或，只能用{与(&amp;)  或(|)  非(~)}组合表示(表示我自己都不想读)</u></p>
+<p>​            <u>2.只能进行整形间的交换(但是不溢出)c</u></p>
+<hr>
+<h2 id="五-栈"><a href="#五-栈" class="headerlink" title="五.栈"></a>五.栈</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_asm<span class="comment">//后进先出</span></span><br><span class="line">&#123;</span><br><span class="line">push a</span><br><span class="line">push b<span class="comment">//1a2b推</span></span><br><span class="line">pop a</span><br><span class="line">pop b<span class="comment">//1b2a弹</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_asm push a</span><br><span class="line">a=b;</span><br><span class="line">_asm pop b<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
+
+<p>好吧如果你学过汇编也可以这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_asm mov eax,a<span class="comment">//mov指令</span></span><br><span class="line">a = b;</span><br><span class="line">_asm mov b,eax</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_asm<span class="comment">//xchg指令</span></span><br><span class="line">&#123;c</span><br><span class="line">mov eax,ac</span><br><span class="line">xchg b,eax</span><br><span class="line">mov a,eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.虽然没有显式使用中间变量，但其实本质还是用了额外贮存空间</u></p>
+<h2 id="六-位运算"><a href="#六-位运算" class="headerlink" title="六.位运算"></a>六.位运算</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=(_int64)a&lt;&lt;<span class="number">16</span>;       <span class="comment">//a=(_int64)a&lt;&lt;8;</span></span><br><span class="line">a|=b;                  <span class="comment">//a|=b;</span></span><br><span class="line">b=(_int64)a&gt;&gt;<span class="number">16</span>;       <span class="comment">//b=(_int64)a&gt;&gt;8;</span></span><br><span class="line">a=a&amp;<span class="number">0xffff</span>;            <span class="comment">//a=a&amp;0xff;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b =(__int64)((__int64)a&lt;&lt;<span class="number">16</span>|(a=b))&gt;&gt;<span class="number">16</span>;<span class="comment">//简写(其实简写规律很清晰)</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.a，b不能超过16位</u></p>
+<h2 id="七-指针地址法"><a href="#七-指针地址法" class="headerlink" title="七.指针地址法"></a>七.指针地址法</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a&lt;b)</span><br><span class="line">&#123;</span><br><span class="line">    a=(<span class="keyword">int</span>)(b-a);</span><br><span class="line">    b=(<span class="keyword">int</span>)(b-(<span class="keyword">int</span>)a&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">    a=(<span class="keyword">int</span>)(b+(<span class="keyword">int</span>)a&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    b=(<span class="keyword">int</span>)(a-b);</span><br><span class="line">    a=(<span class="keyword">int</span>)(a-(<span class="keyword">int</span>)b&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">    b=(<span class="keyword">int</span>)(a+(<span class="keyword">int</span>)b&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.此算法交换的是值的地址，在数值很大时比算术方法快很多</u></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">

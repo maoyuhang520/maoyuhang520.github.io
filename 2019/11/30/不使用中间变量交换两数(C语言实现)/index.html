@@ -7,17 +7,17 @@
   
   
   
-  <title>Hello World | Mao‘s Blog</title>
+  <title>不使用中间变量交换两数(C语言实现) | Mao‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="title：不使用中间变量交换两数的方法（C语言）不使用中间变量交换两数的方法（C语言）一.加减法 存和法  123a=a+b;b=a-b;&#x2F;&#x2F;b=(a+b)-b=aa=a-b;&#x2F;&#x2F;a=(a+b)-a=b  1a=b+a-(b=a);&#x2F;&#x2F;简写   存差法  123a=a-b;b=a+b;&#x2F;&#x2F;b=(a-b)+b=aa=b-a;&#x2F;&#x2F;a=a-(a-b)=b  1a=b-a+(b=a);&#x2F;&#x2F;简写  【注">
 <meta name="keywords" content="python,pwn,bookkeeping">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;27&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="不使用中间变量交换两数(C语言实现)">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)&#x2F;index.html">
 <meta property="og:site_name" content="Mao‘s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="title：不使用中间变量交换两数的方法（C语言）不使用中间变量交换两数的方法（C语言）一.加减法 存和法  123a=a+b;b=a-b;&#x2F;&#x2F;b=(a+b)-b=aa=a-b;&#x2F;&#x2F;a=(a+b)-a=b  1a=b+a-(b=a);&#x2F;&#x2F;简写   存差法  123a=a-b;b=a+b;&#x2F;&#x2F;b=(a-b)+b=aa=b-a;&#x2F;&#x2F;a=a-(a-b)=b  1a=b-a+(b=a);&#x2F;&#x2F;简写  【注">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-26T16:17:19.578Z">
+<meta property="og:updated_time" content="2020-02-05T12:16:00.685Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Mao‘s Blog" type="application/atom+xml">
@@ -275,11 +275,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-不使用中间变量交换两数(C语言实现)" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/11/27/hello-world/" class="article-date">
-      <time datetime="2019-11-26T16:17:19.578Z" itemprop="datePublished">2019-11-26</time>
+      <a  href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/" class="article-date">
+      <time datetime="2019-11-30T13:20:02.943Z" itemprop="datePublished">2019-11-30</time>
 </a>
 
     </div>
@@ -293,7 +293,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      不使用中间变量交换两数(C语言实现)
     </h1>
   
 
@@ -311,19 +311,67 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <hr>
+<h2 id="title：不使用中间变量交换两数的方法（C语言）"><a href="#title：不使用中间变量交换两数的方法（C语言）" class="headerlink" title="title：不使用中间变量交换两数的方法（C语言）"></a>title：不使用中间变量交换两数的方法（C语言）</h2><h1 id="不使用中间变量交换两数的方法（C语言）"><a href="#不使用中间变量交换两数的方法（C语言）" class="headerlink" title="不使用中间变量交换两数的方法（C语言）"></a>不使用中间变量交换两数的方法（C语言）</h1><h2 id="一-加减法"><a href="#一-加减法" class="headerlink" title="一.加减法"></a>一.加减法</h2><ul>
+<li><h5 id="存和法"><a href="#存和法" class="headerlink" title="存和法"></a>存和法</h5></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a+b;</span><br><span class="line">b=a-b;<span class="comment">//b=(a+b)-b=a</span></span><br><span class="line">a=a-b;<span class="comment">//a=(a+b)-a=b</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b+a-(b=a);<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="存差法"><a href="#存差法" class="headerlink" title="存差法"></a>存差法</h5></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a-b;</span><br><span class="line">b=a+b;<span class="comment">//b=(a-b)+b=a</span></span><br><span class="line">a=b-a;<span class="comment">//a=a-(a-b)=b</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b-a+(b=a);<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>【注】<u>1.交换整形和浮点型时可能发生精度缺失</u></p>
+<p>​            <u>2.存和法+运算中，可能产生溢出(int型32位)，虽然不影响结果，但不安全</u></p>
+<hr>
+<h2 id="二-乘除法"><a href="#二-乘除法" class="headerlink" title="二.乘除法"></a>二.乘除法</h2><ul>
+<li><h5 id="存积法"><a href="#存积法" class="headerlink" title="存积法"></a>存积法</h5></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a*b;</span><br><span class="line">b=a/b;<span class="comment">//b=(a*b)/b=a</span></span><br><span class="line">a=a/b;<span class="comment">//a=(a*b)/a=b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b*a/(b=a);<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.交换整数和浮点数时可能发生精度缺失</u></p>
+<p>​            <u>2.a和b的初值都不能为0</u></p>
+<p>​            <u>3.存积法中乘运算比加更容易溢出(显然)，同样不影响结果(仍然不安全)</u></u></p>
+<p>​            <u>4.存商法过于局限，C语言中除法运算结果为整数，只有两个整数成倍数关系时，才可能结果正确。</u></u></p>
+<hr>
+<h2 id="三-异或法"><a href="#三-异或法" class="headerlink" title="三.异或法"></a>三.异或法</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a^=b;       </span><br><span class="line">b^=a;<span class="comment">//b=b^(a^b)=b^b^a=0^a=a    </span></span><br><span class="line">a^=b;<span class="comment">//a=(a^b)^a=a^a^b=0^b=b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a^=b^=a^=b;<span class="comment">//有点绕</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.只能进行整形间的交换(但是不溢出)</u></p>
+<hr>
+<h2 id="四-同或法"><a href="#四-同或法" class="headerlink" title="四.同或法"></a>四.同或法</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=a&amp;b|~a&amp;~b;<span class="comment">//a=a⊙b</span></span><br><span class="line">b=a&amp;b|~a&amp;~b;<span class="comment">//b=a⊙b</span></span><br><span class="line">a=a&amp;b|~a&amp;~b;<span class="comment">//a=a⊙b</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我也不知道怎么简写</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.c语言没同或，只能用{与(&amp;)  或(|)  非(~)}组合表示(表示我自己都不想读)</u></p>
+<p>​            <u>2.只能进行整形间的交换(但是不溢出)c</u></p>
+<hr>
+<h2 id="五-栈"><a href="#五-栈" class="headerlink" title="五.栈"></a>五.栈</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_asm<span class="comment">//后进先出</span></span><br><span class="line">&#123;</span><br><span class="line">push a</span><br><span class="line">push b<span class="comment">//1a2b推</span></span><br><span class="line">pop a</span><br><span class="line">pop b<span class="comment">//1b2a弹</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_asm push a</span><br><span class="line">a=b;</span><br><span class="line">_asm pop b<span class="comment">//简写</span></span><br></pre></td></tr></table></figure>
+
+<p>好吧如果你学过汇编也可以这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_asm mov eax,a<span class="comment">//mov指令</span></span><br><span class="line">a = b;</span><br><span class="line">_asm mov b,eax</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_asm<span class="comment">//xchg指令</span></span><br><span class="line">&#123;c</span><br><span class="line">mov eax,ac</span><br><span class="line">xchg b,eax</span><br><span class="line">mov a,eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.虽然没有显式使用中间变量，但其实本质还是用了额外贮存空间</u></p>
+<h2 id="六-位运算"><a href="#六-位运算" class="headerlink" title="六.位运算"></a>六.位运算</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=(_int64)a&lt;&lt;<span class="number">16</span>;       <span class="comment">//a=(_int64)a&lt;&lt;8;</span></span><br><span class="line">a|=b;                  <span class="comment">//a|=b;</span></span><br><span class="line">b=(_int64)a&gt;&gt;<span class="number">16</span>;       <span class="comment">//b=(_int64)a&gt;&gt;8;</span></span><br><span class="line">a=a&amp;<span class="number">0xffff</span>;            <span class="comment">//a=a&amp;0xff;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b =(__int64)((__int64)a&lt;&lt;<span class="number">16</span>|(a=b))&gt;&gt;<span class="number">16</span>;<span class="comment">//简写(其实简写规律很清晰)</span></span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.a，b不能超过16位</u></p>
+<h2 id="七-指针地址法"><a href="#七-指针地址法" class="headerlink" title="七.指针地址法"></a>七.指针地址法</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a&lt;b)</span><br><span class="line">&#123;</span><br><span class="line">    a=(<span class="keyword">int</span>)(b-a);</span><br><span class="line">    b=(<span class="keyword">int</span>)(b-(<span class="keyword">int</span>)a&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">    a=(<span class="keyword">int</span>)(b+(<span class="keyword">int</span>)a&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    b=(<span class="keyword">int</span>)(a-b);</span><br><span class="line">    a=(<span class="keyword">int</span>)(a-(<span class="keyword">int</span>)b&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">    b=(<span class="keyword">int</span>)(a+(<span class="keyword">int</span>)b&amp;<span class="number">0x0000ffff</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>【注】<u>1.此算法交换的是值的地址，在数值很大时比算术方法快很多</u></p>
 
       
     </div>
@@ -332,13 +380,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2019/11/27/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a  href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/">不使用中间变量交换两数(C语言实现)</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 毛毛独角兽 的个人博客">毛毛独角兽</a></p>
-        <p><span>发布时间:</span>2019年11月26日 - 11时17分</p>
-        <p><span>最后更新:</span>2019年11月27日 - 00时17分</p>
+        <p><span>发布时间:</span>2019年11月30日 - 08时20分</p>
+        <p><span>最后更新:</span>2020年02月05日 - 20时16分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/27/hello-world/" title="Hello World">http://yoursite.com/2019/11/27/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/11/27/hello-world/　　作者: 毛毛独角兽" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/" title="不使用中间变量交换两数(C语言实现)">http://yoursite.com/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/　　作者: 毛毛独角兽" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -349,15 +397,20 @@
 
 <nav id="article-nav">
   
-    <a  href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2020/02/05/%E3%80%8Apython%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E7%AC%94%E8%AE%B0%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9ANumPy%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          不使用中间变量交换两数(C语言实现)
+          《python数据分析与应用笔记》第二章：NumPy数值计算基础
         
       </div>
     </a>
   
+  
+    <a  href="/2019/11/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -367,7 +420,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#title：不使用中间变量交换两数的方法（C语言）"><span class="toc-number">1.</span> <span class="toc-text">title：不使用中间变量交换两数的方法（C语言）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不使用中间变量交换两数的方法（C语言）"><span class="toc-number"></span> <span class="toc-text">不使用中间变量交换两数的方法（C语言）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-加减法"><span class="toc-number">1.</span> <span class="toc-text">一.加减法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#存和法"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">存和法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#存差法"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">存差法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-乘除法"><span class="toc-number">2.</span> <span class="toc-text">二.乘除法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#存积法"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">存积法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-异或法"><span class="toc-number">3.</span> <span class="toc-text">三.异或法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-同或法"><span class="toc-number">4.</span> <span class="toc-text">四.同或法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-栈"><span class="toc-number">5.</span> <span class="toc-text">五.栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六-位运算"><span class="toc-number">6.</span> <span class="toc-text">六.位运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七-指针地址法"><span class="toc-number">7.</span> <span class="toc-text">七.指针地址法</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -440,13 +493,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/" title="上一篇: 不使用中间变量交换两数(C语言实现)">
+            <a  href="/2020/02/05/%E3%80%8Apython%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E7%AC%94%E8%AE%B0%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9ANumPy%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/" title="上一篇: 《python数据分析与应用笔记》第二章：NumPy数值计算基础">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a  href="/2019/11/27/hello-world/" title="下一篇: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/02/05/%E3%80%8Apython%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E7%AC%94%E8%AE%B0%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9ANumPy%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/">《python数据分析与应用笔记》第二章：NumPy数值计算基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/">不使用中间变量交换两数(C语言实现)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/hello-world/">Hello World</a></li></ul>
