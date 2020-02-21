@@ -279,6 +279,475 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-切换python镜像源解决pip命令请求超时问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2020/02/21/%E5%88%87%E6%8D%A2python%E9%95%9C%E5%83%8F%E6%BA%90%E8%A7%A3%E5%86%B3pip%E5%91%BD%E4%BB%A4%E8%AF%B7%E6%B1%82%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" class="article-date">
+      <time datetime="2020-02-21T14:43:36.200Z" itemprop="datePublished">2020-02-21</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2020/02/21/%E5%88%87%E6%8D%A2python%E9%95%9C%E5%83%8F%E6%BA%90%E8%A7%A3%E5%86%B3pip%E5%91%BD%E4%BB%A4%E8%AF%B7%E6%B1%82%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/">切换python镜像源解决pip命令请求超时问题</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="切换python镜像源解决pip命令请求超时问题"><a href="#切换python镜像源解决pip命令请求超时问题" class="headerlink" title="切换python镜像源解决pip命令请求超时问题"></a>切换python镜像源解决pip命令请求超时问题</h2><h4 id="1-pip-install（库）-i-（镜像源）"><a href="#1-pip-install（库）-i-（镜像源）" class="headerlink" title="1.pip install（库）-i  （镜像源）"></a>1.pip install（库）-i  （镜像源）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install opencv-python -i http://pypi.douban.com/simple --trusted-host pypi.douban.com</span><br></pre></td></tr></table></figure>
+
+<p>其他镜像源：</p>
+<p>阿里云 <a href="http://mirrors.aliyun.com/pypi/simple/" target="_blank" rel="noopener">http://mirrors.aliyun.com/pypi/simple/</a></p>
+<p>中科大 <a href="https://pypi.mirrors.ustc.edu.cn/simple/" target="_blank" rel="noopener">https://pypi.mirrors.ustc.edu.cn/simple/</a></p>
+<p>网易 <a href="http://pypi.mirrors.163.com/simple/" target="_blank" rel="noopener">http://pypi.mirrors.163.com/simple/</a></p>
+<p>豆瓣 <a href="http://pypi.douban.com/simple/" target="_blank" rel="noopener">http://pypi.douban.com/simple/</a></p>
+<p>清华 <a href="https://pypi.tuna.tsinghua.edu.cn/simple/" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple/</a></p>
+<h4 id="2-修改默认镜像"><a href="#2-修改默认镜像" class="headerlink" title="2.修改默认镜像"></a>2.修改默认镜像</h4><p>进入windows-OS(c:)-user(用户)</p>
+<p>创建文件夹pip</p>
+<p>新建文件pip.ini：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = http://pypi.douban.com/simple</span><br><span class="line">[install]</span><br><span class="line">trusted-host=pypi.douban.comc</span><br></pre></td></tr></table></figure>
+
+<p>进入高级环境变量设置</p>
+<p>在PATH后加上%HOME%\pip\pip.ini </p>
+<p>这也是一种提速方法<del>~</del>（贼快！！！）</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-《python核心编程笔记》正则表达式(1)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2020/02/21/%E3%80%8Apython%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%E3%80%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F(1)/" class="article-date">
+      <time datetime="2020-02-21T14:43:34.641Z" itemprop="datePublished">2020-02-21</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2020/02/21/%E3%80%8Apython%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%E3%80%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F(1)/">《python核心编程笔记》正则表达式(1)</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><table>
+<thead>
+<tr>
+<th align="center">表示法</th>
+<th align="center">描述</th>
+<th align="center">例子</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">符号</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><del>~</del>················</td>
+</tr>
+<tr>
+<td align="center">literal</td>
+<td align="center">匹配字面值literal</td>
+<td align="center">foo</td>
+<td align="center">~~</td>
+</tr>
+<tr>
+<td align="center">re1|re2</td>
+<td align="center">匹配re1或者re2</td>
+<td align="center">foo|bar</td>
+<td align="center">择一匹配/并/逻辑或</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">匹配字符(\n除外)</td>
+<td align="center">b.f;.. ;.end;</td>
+<td align="center">匹配在b<del>f之间的任意一个字符，如fao，f9o</del>;匹配任意俩字符;匹配end之前任意一个字;【注】：要匹配符号本身，加反斜线，如\.</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">匹配字符串头</td>
+<td align="center">^From</td>
+<td align="center">任何以 From 作为起始的字符串</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">匹配字符串尾</td>
+<td align="center">/bin/<em>sh$;.*</em>\$$</td>
+<td align="center">任何以/bin/*sh 作为结尾的字符串;匹配任何以美元符号结尾的字符串</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">匹配0或多次前面出现的</td>
+<td align="center">[A-Za-z0-9]*</td>
+<td align="center">在计算机编程语言和编译原理中，该操作称为 Kleene 闭包）</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="center">匹配1或多次前面出现的</td>
+<td align="center">[a-z]+.com</td>
+<td align="center">正闭包操作符</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td align="center">匹配0或1次前面出现的</td>
+<td align="center">goo?；0?[1-9]；[dn]ot?</td>
+<td align="center">当模式匹配使用分组操作符时，正则表达式引擎将试图 “吸收”匹配该模式的尽可能多的字符。这通常被叫做贪婪匹配。问号要求正则表达式引擎去掉 “偷懒”，如果可能，就在当前的正则表达式中尽可能少地匹配字符，留下尽可能多的字符给 后面的模式（如果存在）；任何数值数字，他可能前置一个“0”；字母“d”或者“n”，后面跟着一个“o”，然后是最多一个“t”</td>
+</tr>
+<tr>
+<td align="center">{N}</td>
+<td align="center">匹配 <em>N</em> 次前面出现的</td>
+<td align="center">[0-9]{3}</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">{M,N}</td>
+<td align="center">匹配 <em>M</em>～<em>N</em> 次前面出现的</td>
+<td align="center">[0-9]{5,9}</td>
+<td align="center">匹配 5 或者 9 个数字（例如信用卡号码）</td>
+</tr>
+<tr>
+<td align="center">[…]</td>
+<td align="center">匹配字符集的任意单一字符</td>
+<td align="center">b[aei]t</td>
+<td align="center">bat,bet,bit</td>
+</tr>
+<tr>
+<td align="center">[..x-y..]</td>
+<td align="center">匹配 <em>x<strong>～</strong>y</em> 范围中的任意单一字符</td>
+<td align="center">[0-2] [A-Za-z];[KQRBNP][a-h][1-8]-[a-h][1-8]</td>
+<td align="center">第一个0~2后面跟着第二个字母任一;在“长代数”标记法中，表示国际象棋合法的棋盘移动（仅移动，不包括吃子和将军）。 即“K”、“Q”、“R”、“B”、“N”或“P”等字母后面加上“a1”～“h8”之间的棋盘坐标。前面的坐标表示从哪里开始走棋，后面的坐标代表走到哪个位置（棋格）上匹配全部有效的（和无效的）HTML 标签</td>
+</tr>
+<tr>
+<td align="center">[^…]</td>
+<td align="center">不匹配此字符集中出现的任何一个字符，包括某一范围的字符（如果在此字符集中出现）</td>
+<td align="center">[^aeiou], [^A-Za-z0-9]</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(*|+|?|{})?</td>
+<td align="center">用于匹配上面频繁出现/重复出现符号的非贪婪版本（*、+、?、{}）</td>
+<td align="center">&lt;/?[^&gt;]+&gt;</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(…)</td>
+<td align="center">匹配封闭的正则表达式，然后另存为子组</td>
+<td align="center">匹配全部有效的（和无效的）HTML 标签([0-9]{3})?,f(oo|u)bar</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">特殊字符</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="center">匹配任何十进制数字，与[0-9]一致（\D 与\d 相反，不匹配任何非数值型的数字）</td>
+<td align="center">data\d+.txt</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">匹配任何字母数字字符，与[A-Za-z0-9_]相同（\W 与之相反）</td>
+<td align="center">[A-Za-z_]\w+</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">匹配任何空格字符，与[\n\t\r\v\f]相同（\S 与之相反）</td>
+<td align="center">of\sthe</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">匹配任何单词边界（\B 与之相反）</td>
+<td align="center">\bThe;\bthe\b;\Bthe</td>
+<td align="center">任何以 the 开始的字符串;仅仅匹配单词 the;任何包含但并不以 the 作为起始的字符串</td>
+</tr>
+<tr>
+<td align="center">\N</td>
+<td align="center">匹配已保存的子组 <em>N</em>（参见上面的(…))</td>
+<td align="center">price: \16</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\c</td>
+<td align="center">逐字匹配任何特殊字符 <em>c</em>（即，仅按照字面意义匹配，不匹配特殊含义）</td>
+<td align="center">., \, *</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\A(\Z)</td>
+<td align="center">匹配字符串的起始（结束）（另见上面介绍的^和$）</td>
+<td align="center">\ADear</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">扩展表示法</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(?iLmsux)</td>
+<td align="center">在正则表达式中嵌入一个或者多个特殊“标记”参数（或者通过函数/方法）</td>
+<td align="center">（?x），（？ im）</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(?:…)</td>
+<td align="center">表示一个匹配不用保存的分组</td>
+<td align="center">(?:\w+\.)*</td>
+<td align="center">以句点作为结尾的字符串，例如“google.”、“twitter.”、“facebook.”，但是这些匹配不会保存下来 ,供后续的使用和数据检索</td>
+</tr>
+<tr>
+<td align="center">(?P&lt;<em>name</em>&gt;…)</td>
+<td align="center">像一个仅由 name 标识而不是数字 ID 标识的正则分组匹配</td>
+<td align="center">(?P<data>)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(?P=<em>name</em>)</td>
+<td align="center">在同一字符串中匹配由(?P&lt;name)分组的之前文本</td>
+<td align="center">(?P=data)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">(?#…)</td>
+<td align="center">表示注释，所有内容都被忽略</td>
+<td align="center">(?#comment)</td>
+<td align="center">此处并不做匹配，只是作为注释</td>
+</tr>
+<tr>
+<td align="center">(?=…)</td>
+<td align="center">匹配条件是如果…出现在之后的位置，而不使用输入字符串；称作正向前视断言</td>
+<td align="center">(?=.com)</td>
+<td align="center">如果一个字符串后面跟着“.com”才做匹配操作，并不使用任何目标字符串</td>
+</tr>
+<tr>
+<td align="center">(?!…)</td>
+<td align="center">匹配条件是如果…不出现在之后的位置，而不使用输入字符串；称作负向前视断言</td>
+<td align="center">(?!.net)</td>
+<td align="center">如果一个字符串后面不是跟着“.net”才做匹配操作</td>
+</tr>
+<tr>
+<td align="center">(?&lt;=…)</td>
+<td align="center">匹配条件是如果…出现在之前的位置，而不使用输入字符串；称作正向后视断言</td>
+<td align="center">(?&lt;=800-)</td>
+<td align="center">如果字符串之前为“800-”才做匹配，假定为电话号码，同样，并不使用任何输入字符串</td>
+</tr>
+<tr>
+<td align="center">(?&lt;!…)</td>
+<td align="center">匹配条件是如果…不出现在之前的位置，而不使用输入字符串；称作负向后视断言</td>
+<td align="center">(?&lt;!192.168\.)</td>
+<td align="center">如果一个字符串之前不是“192.168.”才做匹配操作，假定用于过滤掉一组 C 类 IP 地址</td>
+</tr>
+<tr>
+<td align="center">(?(<em>id/name)Y|N</em>)</td>
+<td align="center">如果分组所提供的 <em>id</em> 或者 <em>name<em>（名称）存在，就返回正则表达式的条件匹配 *Y</em>，如 果不存在，就返回 <em>N*</em>；**N</em> 是可选项</td>
+<td align="center">(?(1)y|x）</td>
+<td align="center">如果一个匹配组 1（\1）存在，就与 y 匹配；否则，就与 x 匹配</td>
+</tr>
+<tr>
+<td align="center">字符集</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\w+-\d+</td>
+<td align="center">一个由字母数字组成的字符串和一串由一个连字符分隔的数字</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">[A-Za-z]\w*</td>
+<td align="center">第一个字符是字母；其余字符（如果存在）可以是字母或者数字（几乎等价于 Python 中的有效标识符</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\d{3}-\d{3}-\d{4}</td>
+<td align="center">美国电话号码的格式，前面是区号前缀，例如 800-555-1212</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">\w+@\w+.com</td>
+<td align="center"><em>XXX</em>@<em>YYY</em>.com 格式表示的简单电子邮件地址</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h1 id="re模块：核心函数和方法"><a href="#re模块：核心函数和方法" class="headerlink" title="re模块：核心函数和方法"></a>re模块：核心函数和方法</h1><table>
+<thead>
+<tr>
+<th align="center">函数<strong>/</strong>方法</th>
+<th align="center">描 述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">compile(<em>pattern<em>，</em>flags</em> = 0)</td>
+<td align="center">使用任何可选的标记来编译正则表达式的模式，然后返回一个正则表达式对象</td>
+</tr>
+<tr>
+<td align="center">re 模块函数和正则表达式对象的方法</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">match(<em>pattern<strong>，</strong>string<strong>，</strong>flags</em>=0)</td>
+<td align="center">尝试使用带有可选的标记的正则表达式的模式来匹配字符串。如果匹配成功，就返回匹配对象；如果失败，就返回 None</td>
+</tr>
+<tr>
+<td align="center">search(<em>pattern*</em>，<strong>string</strong>，*<em>flags=</em>0)</td>
+<td align="center">使用可选标记搜索字符串中第一次出现的正则表达式模式。如果匹配成功，则返回匹配对象；如果失败，则返回 None</td>
+</tr>
+<tr>
+<td align="center">findall(<em>pattern<strong>，</strong>string</em> [<em>, flags</em>] )</td>
+<td align="center">查找字符串中所有（非重复）出现的正则表达式模式，并返回一个匹配列表</td>
+</tr>
+<tr>
+<td align="center">finditer<em>(pattern<strong>，</strong>string</em> [<em>, flags</em>] )</td>
+<td align="center">与 findall()函数相同，但返回的不是一个列表，而是一个迭代器。对于每一次匹配，迭代器都返回一个匹配对象</td>
+</tr>
+<tr>
+<td align="center">split(<em>pattern*</em>，<strong>string</strong>，*<em>max=</em>0)</td>
+<td align="center">根据正则表达式的模式分隔符，split 函数将字符串分割为列表，然后返回成功匹配的列表，分隔最多操作 <em>max</em> 次（默认分割所有匹配成功的位置）</td>
+</tr>
+<tr>
+<td align="center">re 模块函数和正则表达式对象方法</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">sub(<em>pattern<strong>，</strong>repl<strong>，</strong>string<strong>，</strong>count</em>=0)</td>
+<td align="center">使用 <em>repl</em> 替换所有正则表达式的模式在字符串中出现的位置，除非定义 <em>count</em>，否则就将替换所有出现的位置（另见 subn()函数，该函数返回替换操作的数目）</td>
+</tr>
+<tr>
+<td align="center">purge()</td>
+<td align="center">清除隐式编译的正则表达式模式</td>
+</tr>
+<tr>
+<td align="center">常用的匹配对象方法（查看文档以获取更多信息）</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">group(<em>num</em>=0)</td>
+<td align="center">返回整个匹配对象，或者编号为 <em>num</em> 的特定子组</td>
+</tr>
+<tr>
+<td align="center">groups(<em>default</em>=None)</td>
+<td align="center">返回一个包含所有匹配子组的元组（如果没有成功匹配，则返回一个空元组）</td>
+</tr>
+<tr>
+<td align="center">groupdict(<em>default</em>=None)</td>
+<td align="center">返回一个包含所有匹配的命名子组的字典，所有的子组名称作为字典的键（如果没有成功匹配，则返回一个空字典）</td>
+</tr>
+<tr>
+<td align="center">常用的模块属性（用于大多数正则表达式函数的标记）</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">re.I、re.IGNORECASE</td>
+<td align="center">不区分大小写的匹配</td>
+</tr>
+<tr>
+<td align="center">re.L、re.LOCALE</td>
+<td align="center">根据所使用的本地语言环境通过\w、\W、\b、\B、\s、\S 实现匹配</td>
+</tr>
+<tr>
+<td align="center">re.M、re.MULTILINE</td>
+<td align="center">^和$分别匹配目标字符串中行的起始和结尾，而不是严格匹配整个字符串本身的起始和结尾</td>
+</tr>
+<tr>
+<td align="center">re.S、rer.DOTALL</td>
+<td align="center">“.”（点号）通常匹配除了\n（换行符）之外的所有单个字符；该标记表示“.”（点号）能够匹配全部字符</td>
+</tr>
+<tr>
+<td align="center">re.X、re.VERBOSE</td>
+<td align="center">通过反斜线转义，否则所有空格加上#（以及在该行中所有后续文字）都被忽略，除非在一个字符类中或者允许注释并且提高可读性</td>
+</tr>
+</tbody></table>
+<p>【注】：使用预编译的代码对象比直接使用字符串要快，因为解释器在执行字符串形式的代码前都必须把字符串编译成代码对象。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-《python数据分析与应用笔记》第二章：NumPy数值计算基础" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
