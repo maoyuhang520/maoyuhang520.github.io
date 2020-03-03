@@ -279,95 +279,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-操作系统" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2020/02/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="article-date">
-      <time datetime="2020-02-24T15:04:34.658Z" itemprop="datePublished">2020-02-24</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2020/02/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h3 id="第一章：操作系统概述"><a href="#第一章：操作系统概述" class="headerlink" title="第一章：操作系统概述"></a>第一章：操作系统概述</h3><h5 id="1-操作系统定义与地位"><a href="#1-操作系统定义与地位" class="headerlink" title="1.操作系统定义与地位"></a>1.操作系统定义与地位</h5><p>&lt;1&gt;操作系统组成：操作系统的内核(运行于内核态，管理硬件资源)系统调用(运行于用户态，为应用程序员写的应用程序提供系统调用接口)，是管理硬件的软件【注】：单纯的说操作系统是运行于内核态的，是不准确的</p>
-<p><img src="C:%5CUsers%5C86136%5CDesktop%5C2.png" alt=""></p>
-<p><img src="C:%5CUsers%5C86136%5CDesktop%5C%E5%9B%BE%E7%89%873.png" alt=""></p>
-<p>&lt;2&gt;层次：</p>
-<p>硬件层=基本计算资源=有指令系统的处理器，供访问的寄存器和存储器，供使用的I/O设备</p>
-<p>操作系统层=向上提供程序设计者支撑，向下用硬件提供操作接口；调度分配资源，存取保护信息，协调控制并发活动等</p>
-<p>系统程序层=提供扩展指令集，实现和提供各种系统程序</p>
-<p>应用层=~</p>
-<p><img src="C:%5CUsers%5C86136%5CDesktop%5C5~3JS.png" alt=""></p>
-<p>&lt;3&gt;功能：处理器管理，存储管理，设备管理，文件管理</p>
-<p><img src="C:%5CUsers%5C86136%5CDesktop%5C55.png" alt=""></p>
-<p>![](C:\Users\86136\Desktop\4 (1).png)</p>
-<p>&lt;4&gt;特征：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">并发：同一  段  时间内多个程序执行</span><br><span class="line">共享：系统中的资源可以被内存中多个并发执行的进线程共同使用</span><br><span class="line">异步：系统中的进程是以走走停停的方式执行的，且以一种不可预知的速度推进，各种随机,于是存在与时间有关的潜在危险</span><br><span class="line">虚拟：通过时分复用（如分时系统）以及空分复用（如虚拟内存）技术实现把一个物理实体虚拟为多个逻辑对应物或者物理多个实体变为逻辑上一个对应物(前实后虚)</span><br></pre></td></tr></table></figure>
-
-<p>【注】：由此，通过多道程序和分时使用CPU技术，物理上的一个CPU变成逻辑上的多个CPU</p>
-<h5 id="2-批处理系统"><a href="#2-批处理系统" class="headerlink" title="2.批处理系统"></a>2.批处理系统</h5><p>联机批处理——脱机批处理——-执行系统</p>
-<p>&lt;1&gt;联机批处理：去人工，作业流，成批处理，I/O由CPU直接控制</p>
-<p>&lt;2&gt;脱机批处理：程序和数据的输入输出脱离主机，由外围计算机(卫星机)的控制</p>
-<p>​                    输入设备–外围机–磁盘–主机–磁盘–外围机–输出设备</p>
-<p>​                    解决低速输入设备与高速CPU发展不匹配(这其实就是联机的缺点：CPU使用效率低)</p>
-<p>&lt;3&gt;执行系统：发展后的监督程序常驻内存</p>
-<p><img src="C:%5CUsers%5C86136%5CDesktop%5C%E5%9B%BE%E7%89%872.png" alt=""></p>
-<h5 id="3-多道技术"><a href="#3-多道技术" class="headerlink" title="3.多道技术"></a>3.多道技术</h5><p>&lt;1&gt;产生原因：早期批处理系统无保护自身措施，会无差别执行引起停机的非法指令，而在通道引入和中断技术出现(计算机硬件)的条件下</p>
-<p>【注】通道：输入/输出专用处理机(外设-主存，一对多)；启动后独立与CPU运行，CPU外设通道因此可并行；成本低于外围机，受到主机控制</p>
-<p>【注】中断技术：主机接到外部硬件信号，停下工作，转去处理完这个信号，再继续原来工作点工作</p>
-<p>&lt;2&gt;处理功能：调度作业自动与逆行，提供输入输出控制功能，用户不能直接使用启动外设的指令，它的输入/输出请求必须通过主机去执行(这个发展后的监督程序常驻内存，称为执行系统 ) </p>
-<p> &lt;3&gt;特点：多道：主存中同时多个相互独立的程序</p>
-<p>宏观并行：站在整个系统的角度</p>
-<p>微观串行：站在CPU的角度；</p>
-<p>无序性 ：多道程序的执行先后顺序不固定。或者说不可重复性</p>
-<p> &lt;4&gt;优点：节省了卫星机，降低了成本，而且同样能支持主机和通道、主机和外设之间的并行操作 ，(分时技术)满足了人机交互和共享主机； 由执行系统检查其命令的合法性，提高了系统的安全性；批处理系统和执行系统的普及，发展了标准文件管理系统和外部设备的自动调节控制功能                 </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-切换python镜像源解决pip命令请求超时问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -441,10 +352,10 @@
 
 
   
-    <article id="post-《python核心编程笔记》(1)正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-正则表达式表" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2020/02/21/%E3%80%8Apython%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%E3%80%8B(1)%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+      <a  href="/2020/02/21/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%A1%A8/" class="article-date">
       <time datetime="2020-02-21T14:43:34.641Z" itemprop="datePublished">2020-02-21</time>
 </a>
 
@@ -459,7 +370,7 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2020/02/21/%E3%80%8Apython%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%E3%80%8B(1)%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">《python核心编程笔记》(1)正则表达式</a>
+      <a  class="article-title" href="/2020/02/21/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%A1%A8/">正则表达式表</a>
     </h1>
   
 
