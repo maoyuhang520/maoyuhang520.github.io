@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>操作系统 | Mao‘s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title：操作系统第一章：操作系统概述一.操作系统定义与地位1.操作系统组成：操作系统的内核(运行于内核态，管理硬件资源)系统调用(运行于用户态，为应用程序员写的应用程序提供系统调用接口)，是管理硬件的软件【注】：单纯的说操作系统是运行于内核态的，是不准确的   2.层次：硬件层=基本计算资源=有指令系统的处理器，供访问的寄存器和存储器，供使用的I&#x2F;O设备 操作系统层=向上提供程序设计者支撑，">
+<meta name="keywords" content="python,pwn,bookkeeping">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;27&#x2F;%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F&#x2F;index.html">
+<meta property="og:site_name" content="Mao‘s Blog">
+<meta property="og:description" content="title：操作系统第一章：操作系统概述一.操作系统定义与地位1.操作系统组成：操作系统的内核(运行于内核态，管理硬件资源)系统调用(运行于用户态，为应用程序员写的应用程序提供系统调用接口)，是管理硬件的软件【注】：单纯的说操作系统是运行于内核态的，是不准确的   2.层次：硬件层=基本计算资源=有指令系统的处理器，供访问的寄存器和存储器，供使用的I&#x2F;O设备 操作系统层=向上提供程序设计者支撑，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="c:%5CUsers%5C86136%5CDesktop%5C2.png">
+<meta property="og:image" content="c:%5CUsers%5C86136%5CDesktop%5C%E5%9B%BE%E7%89%873.png">
+<meta property="og:image" content="c:%5CUsers%5C86136%5CDesktop%5C5~3JS.png">
+<meta property="og:image" content="c:%5CUsers%5C86136%5CDesktop%5C55.png">
+<meta property="og:image" content="c:%5CUsers%5C86136%5CDesktop%5C%E5%9B%BE%E7%89%872.png">
+<meta property="og:updated_time" content="2020-03-03T16:43:19.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5C86136%5CDesktop%5C2.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Mao‘s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">毛毛独角兽</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">do it by yourself</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">加QQ2972945613一起交流啊！！！</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">毛毛独角兽</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">毛毛独角兽</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">do it by yourself</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-操作系统" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/11/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="article-date">
+      <time datetime="2019-11-26T16:17:19.578Z" itemprop="datePublished">2019-11-26</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      操作系统
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<h2 id="title：操作系统"><a href="#title：操作系统" class="headerlink" title="title：操作系统"></a>title：操作系统</h2><h1 id="第一章：操作系统概述"><a href="#第一章：操作系统概述" class="headerlink" title="第一章：操作系统概述"></a>第一章：操作系统概述</h1><h3 id="一-操作系统定义与地位"><a href="#一-操作系统定义与地位" class="headerlink" title="一.操作系统定义与地位"></a>一.操作系统定义与地位</h3><h6 id="1-操作系统组成："><a href="#1-操作系统组成：" class="headerlink" title="1.操作系统组成："></a>1.操作系统组成：</h6><p>操作系统的内核(运行于内核态，管理硬件资源)系统调用(运行于用户态，为应用程序员写的应用程序提供系统调用接口)，是管理硬件的软件【注】：单纯的说操作系统是运行于内核态的，是不准确的</p>
+<p><img src="C:%5CUsers%5C86136%5CDesktop%5C2.png" alt=""></p>
+<p><img src="C:%5CUsers%5C86136%5CDesktop%5C%E5%9B%BE%E7%89%873.png" alt=""></p>
+<h6 id="2-层次："><a href="#2-层次：" class="headerlink" title="2.层次："></a>2.层次：</h6><p>硬件层=基本计算资源=有指令系统的处理器，供访问的寄存器和存储器，供使用的I/O设备</p>
+<p>操作系统层=向上提供程序设计者支撑，向下用硬件提供操作接口；调度分配资源，存取保护信息，协调控制并发活动等</p>
+<p>系统程序层=提供扩展指令集，实现和提供各种系统程序</p>
+<p>应用层=~</p>
+<p><img src="C:%5CUsers%5C86136%5CDesktop%5C5~3JS.png" alt=""></p>
+<h6 id="3-功能："><a href="#3-功能：" class="headerlink" title="3.功能："></a>3.功能：</h6><p>处理器管理，存储管理，设备管理，文件管理</p>
+<p><img src="C:%5CUsers%5C86136%5CDesktop%5C55.png" alt=""></p>
+<p>![](C:\Users\86136\Desktop\4 (1).png)</p>
+<h6 id="4-特征："><a href="#4-特征：" class="headerlink" title="4.特征："></a>4.特征：</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">并发：同一  段  时间内多个程序执行</span><br><span class="line">共享：系统中的资源可以被内存中多个并发执行的进线程共同使用</span><br><span class="line">异步：系统中的进程是以走走停停的方式执行的，且以一种不可预知的速度推进，各种随机,于是存在与时间有关的潜在危险</span><br><span class="line">虚拟：通过时分复用（如分时系统）以及空分复用（如虚拟内存）技术实现把一个物理实体虚拟为多个逻辑对应物或者物理多个实体变为逻辑上一个对应物(前实后虚)</span><br></pre></td></tr></table></figure>
+
+<p>【注】：由此，通过多道程序和分时使用CPU技术，物理上的一个CPU变成逻辑上的多个CPU</p>
+<h3 id="二-批处理系统"><a href="#二-批处理系统" class="headerlink" title="二.批处理系统"></a>二.批处理系统</h3><p>联机批处理——脱机批处理——-执行系统</p>
+<h6 id="1-联机批处理："><a href="#1-联机批处理：" class="headerlink" title="1.联机批处理："></a>1.联机批处理：</h6><p>去人工，作业流，成批处理，I/O由CPU直接控制</p>
+<h6 id="2-脱机批处理："><a href="#2-脱机批处理：" class="headerlink" title="2.脱机批处理："></a>2.脱机批处理：</h6><p>程序和数据的输入输出脱离主机，由外围计算机(卫星机)的控制</p>
+<p>输入设备–外围机–磁盘–主机–磁盘–外围机–输出设备</p>
+<p>解决低速输入设备与高速CPU发展不匹配(这其实就是联机的缺点：CPU使用效率低)</p>
+<h6 id="3-执行系统：发展后的监督程序常驻内存"><a href="#3-执行系统：发展后的监督程序常驻内存" class="headerlink" title="3.执行系统：发展后的监督程序常驻内存"></a>3.执行系统：发展后的监督程序常驻内存</h6><p><img src="C:%5CUsers%5C86136%5CDesktop%5C%E5%9B%BE%E7%89%872.png" alt=""></p>
+<h3 id="三-多道技术"><a href="#三-多道技术" class="headerlink" title="三.多道技术"></a>三.多道技术</h3><h6 id="1-产生原因："><a href="#1-产生原因：" class="headerlink" title="1.产生原因："></a>1.产生原因：</h6><p>早期批处理系统无保护自身措施，会无差别执行引起停机的非法指令，而在通道引入和中断技术出现(计算机硬件)的条件下</p>
+<p>【注】通道：输入/输出专用处理机(外设-主存，一对多)；启动后独立与CPU运行，CPU外设通道因此可并行；成本低于外围机，受到主机控制</p>
+<p>【注】中断技术：主机接到外部硬件信号，停下工作，转去处理完这个信号，再继续原来工作点工作</p>
+<h6 id="2-处理功能："><a href="#2-处理功能：" class="headerlink" title="2.处理功能："></a>2.处理功能：</h6><p>调度作业自动与逆行，提供输入输出控制功能，用户不能直接使用启动外设的指令，它的输入/输出请求必须通过主机去执行(这个发展后的监督程序常驻内存，称为执行系统 ) </p>
+<h6 id="3-特点："><a href="#3-特点：" class="headerlink" title="3.特点："></a>3.特点：</h6><p>多道：主存中同时多个相互独立的程序</p>
+<p>宏观并行：站在整个系统的角度</p>
+<p>微观串行：站在CPU的角度；</p>
+<p>无序性 ：多道程序的执行先后顺序不固定。或者说不可重复性</p>
+<h6 id="4优点："><a href="#4优点：" class="headerlink" title="4优点："></a>4优点：</h6><p>节省了卫星机，降低了成本，而且同样能支持主机和通道、主机和外设之间的并行操作 ，(分时技术)满足了人机交互和共享主机； 由执行系统检查其命令的合法性，提高了系统的安全性；批处理系统和执行系统的普及，发展了标准文件管理系统和外部设备的自动调节控制功能 </p>
+<hr>
+<h1 id="第二章：处理机状态和用户界面"><a href="#第二章：处理机状态和用户界面" class="headerlink" title="第二章：处理机状态和用户界面"></a>第二章：处理机状态和用户界面</h1><h3 id="一-处理机的态"><a href="#一-处理机的态" class="headerlink" title="一.处理机的态"></a>一.处理机的态</h3><h6 id="1-概念："><a href="#1-概念：" class="headerlink" title="1.概念："></a>1.概念：</h6><p>中央处理机的工作状态</p>
+<h6 id="2-目的："><a href="#2-目的：" class="headerlink" title="2.目的："></a>2.目的：</h6><p>为操作系统建立一个保护环境</p>
+<h6 id="3-类别："><a href="#3-类别：" class="headerlink" title="3.类别："></a>3.类别：</h6><p>&lt;1&gt;管态(系统态；特权态)：比核态权限低，无核态时执行核态全部功能</p>
+<p>&lt;2&gt;目态(用户态；常态)：只允许用户程序访问自己的存储区域</p>
+<table>
+<thead>
+<tr>
+<th align="center">管态</th>
+<th align="center">目态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">操作系统的程序执行</td>
+<td align="center">用户程序执行</td>
+</tr>
+<tr>
+<td align="center">使用全部命令（包括一组特权指令）</td>
+<td align="center">禁止使用特权指令</td>
+</tr>
+<tr>
+<td align="center">使用全部系统资源(包括整个存储区域)</td>
+<td align="center">只允许用户程序访问自己的存储区域</td>
+</tr>
+</tbody></table>
+<p>【注】:特权指令是指能改变机器状态的，修改特殊寄存器的，涉及外部I/O的指令等</p>
+<h6 id="4-CPU状态转换"><a href="#4-CPU状态转换" class="headerlink" title="4.CPU状态转换"></a>4.CPU状态转换</h6><p>&lt;1&gt;目态—管态：只能通过中断(系统调用；故障；错误命令后果；特权命令等；)</p>
+<p>&lt;2&gt;管态—目态：一般用设置PSW(修改程序状态字)实现</p>
+<h3 id="二-操作系统的用户界面"><a href="#二-操作系统的用户界面" class="headerlink" title="二.操作系统的用户界面"></a>二.操作系统的用户界面</h3><h6 id="1-概念：-1"><a href="#1-概念：-1" class="headerlink" title="1.概念："></a>1.概念：</h6><p>接口是操作系统提供给用户与计算机打交道的外部机制</p>
+<h6 id="2-类型："><a href="#2-类型：" class="headerlink" title="2.类型："></a>2.类型：</h6><p>&lt;1&gt;程序接口=系统功能服务页面</p>
+<p>用户程序运行过程中使用系统调用来请求操作系统的服务</p>
+<p>&lt;2&gt;命令接口=操作界面</p>
+<p>用户使用这个操作界面来组织工作流程和控制程序的运行</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>作业控制语言</th>
+<th>键盘命令</th>
+<th>图形化用户界面</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处理系统</td>
+<td>批处理操作系统</td>
+<td>分时操作系统，PC操作系统</td>
+<td>分时操作系统，PC操作系统</td>
+</tr>
+<tr>
+<td>概念</td>
+<td>一种脱机方式下包括对作业处理和资源请求的命令</td>
+<td>为联机用户提供的一种能直接控制和干预程序的操作命令</td>
+<td>一种用户交互集成的图文并茂的视窗操作环境</td>
+</tr>
+</tbody></table>
+<h3 id="三-Linux的基本组成"><a href="#三-Linux的基本组成" class="headerlink" title="三.Linux的基本组成"></a>三.Linux的基本组成</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>Linux内核</th>
+<th>Linux Shell环境</th>
+<th>linux文件系统</th>
+<th>linux应用程序</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>概念</td>
+<td>操作系统核心，独占执行最低层任务，决定系统性能和稳定性，本身不大</td>
+<td>使用者通过壳，shell来沟通kernel</td>
+<td>文件存储在磁盘等设备上的组织方法</td>
+<td><del>~</del></td>
+</tr>
+<tr>
+<td></td>
+<td>Linux内核版本r.x.y{<br />r:目前发布的内核主版本；<br />x：偶数表示稳定，奇数代表开发中；<br />y：错误修补次数；}<br />Linux发行版本Redhat Ubuntu Fedora</td>
+<td>查看版本：uname -r<br />generic通用；server针对服务器；i386针对老式 因特尔处理器</td>
+<td>Linux以‘/’为根目录；VFS允许不同类型文件及系统并存，支持跨文件系统操作</td>
+<td><del>~</del></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="第三章：并发处理与死锁"><a href="#第三章：并发处理与死锁" class="headerlink" title="第三章：并发处理与死锁"></a>第三章：并发处理与死锁</h1><h3 id="一-顺序程序设计"><a href="#一-顺序程序设计" class="headerlink" title="一.顺序程序设计"></a>一.顺序程序设计</h3><h6 id="1-概念：-2"><a href="#1-概念：-2" class="headerlink" title="1.概念："></a>1.概念：</h6><p>若干程序段严格先后次序执行</p>
+<h6 id="2-条件："><a href="#2-条件：" class="headerlink" title="2.条件："></a>2.条件：</h6><p>单道计算机系统中只有一个程序运行，这个程序独占系统全部资源，不受外界影响</p>
+<h6 id="2-特点："><a href="#2-特点：" class="headerlink" title="2.特点："></a>2.特点：</h6><p>&lt;1&gt;顺序性==严格按规定顺序</p>
+<p>&lt;2&gt;封闭性==独占资源，执行环境保证执行过程不受外界影响</p>
+<p>&lt;3&gt;确定性==执行结果可再现，与初始条件有关，与执行时间无关(封闭性保证)</p>
+<h3 id="二-并发程序及特点"><a href="#二-并发程序及特点" class="headerlink" title="二.并发程序及特点"></a>二.并发程序及特点</h3><h6 id="1-并发环境："><a href="#1-并发环境：" class="headerlink" title="1.并发环境："></a>1.并发环境：</h6><p>一定时间内，多个程序同时处于运行但未结束状态，且次序随机</p>
+<h6 id="2-概念："><a href="#2-概念：" class="headerlink" title="2.概念："></a>2.概念：</h6><p>多个程序同时在系统中运行，执行时间上重迭，即使很小，也称并发执行</p>
+<h6 id="3-描述："><a href="#3-描述：" class="headerlink" title="3.描述："></a>3.描述：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">S0;</span><br><span class="line">cobegin</span><br><span class="line">S1;S2;S3;...;SN</span><br><span class="line">coend;</span><br><span class="line">Sn+1;</span><br><span class="line">//so-&gt;s1&amp;s2~~-&gt;Sn+1</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-特点："><a href="#4-特点：" class="headerlink" title="4.特点："></a>4.特点：</h6><p>&lt;1&gt;无封闭性==若并发执行共享了公共变量或者改变了另一个程序的变量，程序的执行结果依赖于程序初始条件和执行时的相对速度</p>
+<p>&lt;2&gt;无对应性==一个程序可以对应多个计算，多用户共享使用用一个程序，但处理计算的对象却是不同的</p>
+<p>&lt;3&gt;相互制约性==程序并发执行，公共变量直接互相制约，资源共享间接相互制约</p>
+<h3 id="三-进程的基本概念"><a href="#三-进程的基本概念" class="headerlink" title="三.进程的基本概念"></a>三.进程的基本概念</h3><h6 id="1-进程定义："><a href="#1-进程定义：" class="headerlink" title="1.进程定义："></a>1.进程定义：</h6><p>一个程序在给定活动空间和初始环境下，在一个处理机上的执行过程。</p>
+<p>【注】进程控制块PCB：描述进程的动态特征。系统利用PCB控制管理进程；PCB是系统感知进程存在的唯一标志。</p>
+<h6 id="2-进程包括："><a href="#2-进程包括：" class="headerlink" title="2.进程包括："></a>2.进程包括：</h6><p>&lt;1&gt;进程的执行程序（一个可执行文件）</p>
+<p>&lt;2&gt;进程控制快（数据结构）</p>
+<p>&lt;3&gt;位于队列，处于某种状态，占用某些系统资源</p>
+<h6 id="3-类型："><a href="#3-类型：" class="headerlink" title="3.类型："></a>3.类型：</h6><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">系统进程</th>
+<th align="center">用户进程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">定义</td>
+<td align="center">操作系统核心代码进程，资源管理和控制</td>
+<td align="center">执行用户程序的进程</td>
+</tr>
+<tr>
+<td align="center">区别</td>
+<td align="center">系统进程被分配一个初始的资源集合，可为它独占，也能最高优先权资格使用</td>
+<td align="center">不能直接I/O操作</td>
+</tr>
+<tr>
+<td align="center">区间</td>
+<td align="center">核态</td>
+<td align="center">用户态</td>
+</tr>
+</tbody></table>
+<h6 id="4-状态："><a href="#4-状态：" class="headerlink" title="4.状态："></a>4.状态：</h6><p>&lt;1&gt;活动规律：</p>
+<p>执行—&gt;暂停—-&gt;执行</p>
+<p>&lt;2&gt;基本状态：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">运行状态</th>
+<th align="center">就绪状态</th>
+<th align="center">等待状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">定义</td>
+<td align="center">已获得运行必须的资源，它的程序正处在处理机上执行</td>
+<td align="center">进程等待某个事件的发生而暂停执行</td>
+<td align="center">进程已获得除CPU外的运行必备资源</td>
+</tr>
+<tr>
+<td align="center">特点</td>
+<td align="center">总只有一个进程处于着这个状态</td>
+<td align="center">即使给他CPU时间也无法执行</td>
+<td align="center">一旦得到CPU控制全就可立即运行。多个进程处于这个状态</td>
+</tr>
+</tbody></table>
+<p>&lt;3&gt;状态变迁：</p>
+<p>进程的状态不是固定不变的，随自身推进和外界条件的变换而发生变化</p>
+<h3 id="四-进程控制"><a href="#四-进程控制" class="headerlink" title="四.进程控制"></a>四.进程控制</h3><h6 id="1-概念：-3"><a href="#1-概念：-3" class="headerlink" title="1.概念："></a>1.概念：</h6><p>对系统中全部进程实行有效管理，是处理机管理的部分（另一部分是进程调度）</p>
+<h6 id="2-包括："><a href="#2-包括：" class="headerlink" title="2.包括："></a>2.包括：</h6><table>
+<thead>
+<tr>
+<th></th>
+<th>进程创建</th>
+<th>进程撤销</th>
+<th>进程挂起</th>
+<th>进程唤醒</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原语形式</td>
+<td>create(name,priority,start-addr)<br />     name：被创建进程的标识符<br />     priority：进程优先级<br />     start-addr：某程序的开始地址</td>
+<td>kill(或者exit)<br />无参数，结果无返回值</td>
+<td>susp(chan)<br />          chan:进程等待的原因</td>
+<td>wakeup(chan)<br />chan:进程等待原因</td>
+</tr>
+<tr>
+<td>原语功能</td>
+<td>创建一个指定标识符的进程，形成该进程的PCB<br />UNIX：fork()</td>
+<td>撤销当前运行的进程归还占用的资源给父进程或操作系统<br />从总链摘除PCB结构归还给PCB池<br />转入进程调度<br />UNIX：exit()</td>
+<td>终止调用进程的执行，加入等待chan的等待对列，转入进程调度<br />UNIX:sleep(chan,pri)</td>
+<td>当进程等待的事件发生时，唤醒等待该事件的所有进程或等待该事件的首进程</td>
+</tr>
+<tr>
+<td>实现步骤</td>
+<td>1.从PCB池申请一个不重复的空的PCB结构<br />2.赋予一个进程标识符<br />3.初始化PCB相关项<br />4.将PCB入就绪队列和PCB总链</td>
+<td>1.根据撤销进程标识号，从相应队列找到PCB<br />2.若该进程拥有子进程，先撤销他的所有子孙进程以防脱离控制<br />3.归还拥有的资源给父进程或者操作系统<br />4.撤销的进程出队，归还PCB给PCB池<br />5.转入进程调度程序</td>
+<td>1.算法susp(chan)<br />2.输入：chan等待原因 输出：无<br />{<br />进程现场信息-&gt;PCB;<br />进程状态置为“阻塞”；<br />插入到等待“chan”等待序列；<br />调用进控制程序；<br />}</td>
+<td>1.从等待进程队列取出PCB<br />2.修改PCB信息<br />3.修改后的PCB加入有关就绪进程队列<br />【注】进程唤醒操作会引起就绪队列和等待chan事件的等待队列发生变化</td>
+</tr>
+</tbody></table>
+<h3 id="五-进程互斥"><a href="#五-进程互斥" class="headerlink" title="五.进程互斥"></a>五.进程互斥</h3><h6 id="1-概念：-4"><a href="#1-概念：-4" class="headerlink" title="1.概念："></a>1.概念：</h6><p>在操作系统中，某一进程正在访问某一存储区域时，不允许其他进程来读出或者修改存储区的内容，这种进程间相互制约的关系即为互斥</p>
+<h6 id="2-互斥原则："><a href="#2-互斥原则：" class="headerlink" title="2.互斥原则："></a>2.互斥原则：</h6><p>&lt;1&gt;保证进入</p>
+<p>当有若干个进程欲进入临界区域时，应在有限的时间内使其进入</p>
+<p>&lt;2&gt;排他性</p>
+<p>每次至多有一个进程处于临界区</p>
+<p>&lt;3&gt;有限性</p>
+<p>进程在临界区内仅逗留有限的时间</p>
+<p>{实现基础：锁机制和信号灯机制}</p>
+<h6 id="3-锁和上锁开锁操作："><a href="#3-锁和上锁开锁操作：" class="headerlink" title="3.锁和上锁开锁操作："></a>3.锁和上锁开锁操作：</h6><p>&lt;1&gt;锁：变量w表示某种资源的状态，w称为“锁”</p>
+<p>&lt;2&gt;锁位：</p>
+<p>0：资源可用<del>~</del>1：资源占用</p>
+<p>&lt;3&gt;问题</p>
+<p>效率低。上锁时，当前上锁进程忙等；</p>
+<p>无法实现。上锁时，原语的进程占有CPU不放，无开锁，死锁。</p>
+<p>&lt;4&gt;原语：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>上锁原语</th>
+<th>开锁原语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法</td>
+<td>lock<br />输入：锁变量w<br />输出：无<br />{<br />test:if(w为1)<br />goto test；//测试锁位的值<br />else w=1；//上锁<br />}</td>
+<td>unlock<br />输入：锁变量<br />输出：无<br />{<br />w=0；//开锁<br />}</td>
+</tr>
+<tr>
+<td>改进</td>
+<td>lock(w)<br />输入：W(锁变量)<br />输出：无<br />{<br />if(w==1)<br />sleep(pri,w);<br />W=1;//上锁<br />}</td>
+<td>unlock(w)<br />输入：W(锁变量)<br />输出：无<br />{<br />if(等待W队列不空)<br />wakeup(w);<br />W=0;<br />}</td>
+</tr>
+</tbody></table>
+<h6 id="4-信号灯和P，V操作："><a href="#4-信号灯和P，V操作：" class="headerlink" title="4.信号灯和P，V操作："></a>4.信号灯和P，V操作：</h6><p>&lt;1&gt;信号灯：</p>
+<p>信号灯是整型变量。a&gt;=0即绿灯，进程可继续执行；&lt;0红，停止。<br>信号灯是一个确定的二元组(s,q),s是一个具有非负初值的整形变量，q是一个初始状态为空的队列。操作系统利用信号灯的值对并发进程和共享资源进行控制和管理。</p>
+<p>【注】创建信号灯时，应准确说明信号灯s的意义和初值(不能为负)</p>
+<p>&lt;2&gt;P，V操作</p>
+<p>信号灯的值只能由P，V操作来改变。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>P操作</th>
+<th>V操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原语</td>
+<td>对信号s的P操作计为P(s)<br />1.取信号灯值-1，若小于0，即调用P(s)的进程受阻<br />2.入信号灯等待队列<br />3.置“等待状态”<br />4.转进程调度</td>
+<td>记为V(s)，都是不可分割的原语操作<br />1.取信号灯值+1，若大于0，进程继续执行<br />2.若小于等于0，从该信号灯的等待队列中取出首元素<br />3.入就绪队列<br />4.置“就绪状态”<br />5.转进程调度</td>
+</tr>
+<tr>
+<td>Main()<br />{<br />int mutex=1;//互斥信号灯<br />cobegin<br />    Pa();<br />    Pb();<br />coend<br />}</td>
+<td>Pa()<br />{<br />…<br />P(mutex);<br />CSa;//临界区<br />V(mutex);<br />…<br />}</td>
+<td>Pb()<br />{<br />…<br />P(mutex);<br />CSb;<br />V(mutex);<br />…<br />}</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="六-进程同步"><a href="#六-进程同步" class="headerlink" title="六.进程同步"></a>六.进程同步</h3><h6 id="1-同步概念："><a href="#1-同步概念：" class="headerlink" title="1.同步概念："></a>1.同步概念：</h6><p>并发进程在一些关键点上可能需要相互等待与互通消息，来源于多个进程合作</p>
+<p>互斥：来源于进程对独占使用资源(设备)的竞争</p>
+<h6 id="2-分类："><a href="#2-分类：" class="headerlink" title="2.分类："></a>2.分类：</h6><p>&lt;1&gt;诸进程合作完成某工作的逻辑顺序</p>
+<p>&lt;2&gt;对缓冲区资源的共享和传递</p>
+<h3 id="七-死锁"><a href="#七-死锁" class="headerlink" title="七.死锁"></a>七.死锁</h3><h6 id="1-概念：-5"><a href="#1-概念：-5" class="headerlink" title="1.概念："></a>1.概念：</h6><p>多个进程因为竞争共享资源而造成的一种僵局，若无外力作用，这些进程将永远不能再向前推进</p>
+<h6 id="2-产生原因："><a href="#2-产生原因：" class="headerlink" title="2.产生原因："></a>2.产生原因：</h6><p>&lt;1&gt;竞争系统资源：系统打印机读卡机都只有1台，可供继承P1P2共享，形成环路。</p>
+<p>&lt;2&gt;进程的推进顺序不当</p>
+<h6 id="3-必要条件："><a href="#3-必要条件：" class="headerlink" title="3.必要条件："></a>3.必要条件：</h6><p>&lt;1&gt;互斥条件(资源独占)</p>
+<p>&lt;2&gt;不剥夺条件(不可强占)</p>
+<p>&lt;3&gt;请求和保持条件(部分分配，占有申请)</p>
+<p>&lt;4&gt;环路等待条件</p>
+<h6 id="4-结论："><a href="#4-结论：" class="headerlink" title="4.结论："></a>4.结论：</h6><p>&lt;1&gt;参与死锁的进程最少2个</p>
+<p>&lt;2&gt;参与死锁的进程至少有俩个已经占有资源</p>
+<p>&lt;3&gt;参与死锁的所有进程都在等待资源</p>
+<p>&lt;4&gt;参与死锁的进程是当前系统中所有进程的子集</p>
+<p>&lt;5&gt;如果死锁发生，会浪费大量系统资源，甚至导致系统崩溃</p>
+<h6 id="5-解决死锁的基本办法："><a href="#5-解决死锁的基本办法：" class="headerlink" title="5.解决死锁的基本办法："></a>5.解决死锁的基本办法：</h6><p>&lt;1&gt;预防死锁</p>
+<p>有序资源分配法：系统给每类资源赋予一个编号，每一个进程按照编号递增的顺序请求资源，释放则相反。</p>
+<p>优点：不会死锁，与资源一次性申请相比提高了利用率</p>
+<p>缺点：存在一定的资源浪费，过于保守，降低计算机效率</p>
+<p>&lt;2&gt;避免死锁</p>
+<p>在系统运行过程中，对进程的资源申请进行动态检查，并根据检查结果决定是否分配资源，若分配后可能发生死锁，则不分配</p>
+<p>系统在进行资源分配之前预先计算资源分配的安全性，若此次分配不会导致系统进入不安全状态，则将资源分配给进程；否则进程等待</p>
+<p>&lt;3&gt;安全状态检测</p>
+<p>如果系统中存在一个安全序列(某种进程执行顺序为每个进程分配所需资源直到最大需求，使每个进程顺序完成)</p>
+<p>实质：枚举出所有进程执行顺序，看能找到一个所有进程最终能顺利完成的方式</p>
+<p>判定：进程序列{P1,…,Pn},对每一个进程Pi，它以后需要的资源量不超过系统当前剩余资源量与所有进程Pj(j&lt;i)当前占有资源量之和</p>
+<p>银行家算法：</p>
+<p>当一个用户对资金的最大需求量不超过银行家现有的资金时，就可以接纳该用户</p>
+<p>用户可以分期贷款，但贷款总数不能超过最大需求量</p>
+<p>当银行家现有的资金不能满足用户的尚需贷款数时，可以推迟支付，但总能使用户在有限的时间里得到贷款</p>
+<p>当用户得到所需的全部资金后，一定能在有限的时间里归还所有的资金</p>
+<h3 id="八-进程通信和线程的基本概念"><a href="#八-进程通信和线程的基本概念" class="headerlink" title="八.进程通信和线程的基本概念"></a>八.进程通信和线程的基本概念</h3><h6 id="1-进程通信概念："><a href="#1-进程通信概念：" class="headerlink" title="1.进程通信概念："></a>1.进程通信概念：</h6><p>P.V操作实现进程间的低级通讯，只能传递简单的信号，为低级通讯原语。</p>
+<p>IPC能传递交换大量信息，是多个进程之间相互通信交换信息</p>
+<h6 id="2-Linux进程通信方式："><a href="#2-Linux进程通信方式：" class="headerlink" title="2.Linux进程通信方式："></a>2.Linux进程通信方式：</h6><p>&lt;1&gt;管道pipe和有名管道FIFO</p>
+<p>&lt;2&gt;消息队列</p>
+<p>&lt;3&gt;共享内存</p>
+<p>&lt;4&gt;套接字socker(TCP/UDP)</p>
+<h6 id="3-进程并发执行的基础属性："><a href="#3-进程并发执行的基础属性：" class="headerlink" title="3.进程并发执行的基础属性："></a>3.进程并发执行的基础属性：</h6><p>&lt;1&gt;资源拥有者：给每个进程分配虚拟地址空间，保存进程映像，控制一些资源(文件I/O设备)，有状态，优先级，调度</p>
+<p>&lt;2&gt;调度单位：进程是一个执行轨迹</p>
+<h6 id="4-线程的定义："><a href="#4-线程的定义：" class="headerlink" title="4.线程的定义："></a>4.线程的定义：</h6><p>轻量级进程，进程中的一个运行实体，是一个CPU调度单位，为了简化进程间的通信，以小开销提高进程内并发程度(资源的拥有者还是进程或任务)</p>
+<h6 id="5-线程特点："><a href="#5-线程特点：" class="headerlink" title="5.线程特点："></a>5.线程特点：</h6><p>&lt;1&gt;是进程的一个实体，可以作为系统独立调度的基本单位</p>
+<p>&lt;2&gt;不拥有系统资源(只拥有从属进程的全部资源，资源是分配给进程)</p>
+<p>&lt;3&gt;一个进程可以包括多个线程，可并发执行(进程可创建线程执行同一程序的不同部分)</p>
+<p>&lt;4&gt;系统开销小，切换快(进程的多个线程都在进程的地址空间活动)</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/11/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 毛毛独角兽 的个人博客">毛毛独角兽</a></p>
+        <p><span>发布时间:</span>2019年11月26日 - 11时17分</p>
+        <p><span>最后更新:</span>2020年03月04日 - 00时43分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">http://yoursite.com/2019/11/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/11/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/　　作者: 毛毛独角兽" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          不使用中间变量交换两数(C语言实现)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#title：操作系统"><span class="toc-number">1.</span> <span class="toc-text">title：操作系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章：操作系统概述"><span class="toc-number"></span> <span class="toc-text">第一章：操作系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-操作系统定义与地位"><span class="toc-number">0.1.</span> <span class="toc-text">一.操作系统定义与地位</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-操作系统组成："><span class="toc-number">0.1.0.0.1.</span> <span class="toc-text">1.操作系统组成：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-层次："><span class="toc-number">0.1.0.0.2.</span> <span class="toc-text">2.层次：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-功能："><span class="toc-number">0.1.0.0.3.</span> <span class="toc-text">3.功能：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-特征："><span class="toc-number">0.1.0.0.4.</span> <span class="toc-text">4.特征：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-批处理系统"><span class="toc-number">0.2.</span> <span class="toc-text">二.批处理系统</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-联机批处理："><span class="toc-number">0.2.0.0.1.</span> <span class="toc-text">1.联机批处理：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-脱机批处理："><span class="toc-number">0.2.0.0.2.</span> <span class="toc-text">2.脱机批处理：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-执行系统：发展后的监督程序常驻内存"><span class="toc-number">0.2.0.0.3.</span> <span class="toc-text">3.执行系统：发展后的监督程序常驻内存</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-多道技术"><span class="toc-number">0.3.</span> <span class="toc-text">三.多道技术</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-产生原因："><span class="toc-number">0.3.0.0.1.</span> <span class="toc-text">1.产生原因：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-处理功能："><span class="toc-number">0.3.0.0.2.</span> <span class="toc-text">2.处理功能：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-特点："><span class="toc-number">0.3.0.0.3.</span> <span class="toc-text">3.特点：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4优点："><span class="toc-number">0.3.0.0.4.</span> <span class="toc-text">4优点：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章：处理机状态和用户界面"><span class="toc-number"></span> <span class="toc-text">第二章：处理机状态和用户界面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-处理机的态"><span class="toc-number">0.1.</span> <span class="toc-text">一.处理机的态</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-概念："><span class="toc-number">0.1.0.0.1.</span> <span class="toc-text">1.概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-目的："><span class="toc-number">0.1.0.0.2.</span> <span class="toc-text">2.目的：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-类别："><span class="toc-number">0.1.0.0.3.</span> <span class="toc-text">3.类别：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-CPU状态转换"><span class="toc-number">0.1.0.0.4.</span> <span class="toc-text">4.CPU状态转换</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-操作系统的用户界面"><span class="toc-number">0.2.</span> <span class="toc-text">二.操作系统的用户界面</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-概念：-1"><span class="toc-number">0.2.0.0.1.</span> <span class="toc-text">1.概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-类型："><span class="toc-number">0.2.0.0.2.</span> <span class="toc-text">2.类型：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-Linux的基本组成"><span class="toc-number">0.3.</span> <span class="toc-text">三.Linux的基本组成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章：并发处理与死锁"><span class="toc-number"></span> <span class="toc-text">第三章：并发处理与死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-顺序程序设计"><span class="toc-number">0.1.</span> <span class="toc-text">一.顺序程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-概念：-2"><span class="toc-number">0.1.0.0.1.</span> <span class="toc-text">1.概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-条件："><span class="toc-number">0.1.0.0.2.</span> <span class="toc-text">2.条件：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-特点："><span class="toc-number">0.1.0.0.3.</span> <span class="toc-text">2.特点：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-并发程序及特点"><span class="toc-number">0.2.</span> <span class="toc-text">二.并发程序及特点</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-并发环境："><span class="toc-number">0.2.0.0.1.</span> <span class="toc-text">1.并发环境：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-概念："><span class="toc-number">0.2.0.0.2.</span> <span class="toc-text">2.概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-描述："><span class="toc-number">0.2.0.0.3.</span> <span class="toc-text">3.描述：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-特点："><span class="toc-number">0.2.0.0.4.</span> <span class="toc-text">4.特点：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-进程的基本概念"><span class="toc-number">0.3.</span> <span class="toc-text">三.进程的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-进程定义："><span class="toc-number">0.3.0.0.1.</span> <span class="toc-text">1.进程定义：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-进程包括："><span class="toc-number">0.3.0.0.2.</span> <span class="toc-text">2.进程包括：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-类型："><span class="toc-number">0.3.0.0.3.</span> <span class="toc-text">3.类型：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-状态："><span class="toc-number">0.3.0.0.4.</span> <span class="toc-text">4.状态：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-进程控制"><span class="toc-number">0.4.</span> <span class="toc-text">四.进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-概念：-3"><span class="toc-number">0.4.0.0.1.</span> <span class="toc-text">1.概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-包括："><span class="toc-number">0.4.0.0.2.</span> <span class="toc-text">2.包括：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-进程互斥"><span class="toc-number">0.5.</span> <span class="toc-text">五.进程互斥</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-概念：-4"><span class="toc-number">0.5.0.0.1.</span> <span class="toc-text">1.概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-互斥原则："><span class="toc-number">0.5.0.0.2.</span> <span class="toc-text">2.互斥原则：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-锁和上锁开锁操作："><span class="toc-number">0.5.0.0.3.</span> <span class="toc-text">3.锁和上锁开锁操作：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-信号灯和P，V操作："><span class="toc-number">0.5.0.0.4.</span> <span class="toc-text">4.信号灯和P，V操作：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六-进程同步"><span class="toc-number">0.6.</span> <span class="toc-text">六.进程同步</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-同步概念："><span class="toc-number">0.6.0.0.1.</span> <span class="toc-text">1.同步概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-分类："><span class="toc-number">0.6.0.0.2.</span> <span class="toc-text">2.分类：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七-死锁"><span class="toc-number">0.7.</span> <span class="toc-text">七.死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-概念：-5"><span class="toc-number">0.7.0.0.1.</span> <span class="toc-text">1.概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-产生原因："><span class="toc-number">0.7.0.0.2.</span> <span class="toc-text">2.产生原因：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-必要条件："><span class="toc-number">0.7.0.0.3.</span> <span class="toc-text">3.必要条件：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-结论："><span class="toc-number">0.7.0.0.4.</span> <span class="toc-text">4.结论：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-解决死锁的基本办法："><span class="toc-number">0.7.0.0.5.</span> <span class="toc-text">5.解决死锁的基本办法：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#八-进程通信和线程的基本概念"><span class="toc-number">0.8.</span> <span class="toc-text">八.进程通信和线程的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-进程通信概念："><span class="toc-number">0.8.0.0.1.</span> <span class="toc-text">1.进程通信概念：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-Linux进程通信方式："><span class="toc-number">0.8.0.0.2.</span> <span class="toc-text">2.Linux进程通信方式：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-进程并发执行的基础属性："><span class="toc-number">0.8.0.0.3.</span> <span class="toc-text">3.进程并发执行的基础属性：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-线程的定义："><span class="toc-number">0.8.0.0.4.</span> <span class="toc-text">4.线程的定义：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-线程特点："><span class="toc-number">0.8.0.0.5.</span> <span class="toc-text">5.线程特点：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/" title="上一篇: 不使用中间变量交换两数(C语言实现)">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/02/21/%E5%88%87%E6%8D%A2python%E9%95%9C%E5%83%8F%E6%BA%90%E8%A7%A3%E5%86%B3pip%E5%91%BD%E4%BB%A4%E8%AF%B7%E6%B1%82%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/">切换python镜像源解决pip命令请求超时问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/21/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%A1%A8/">正则表达式表</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/05/NumPy%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/">《python数据分析与应用笔记》第二章：NumPy数值计算基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/30/%E4%B8%8D%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%97%B4%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E4%B8%A4%E6%95%B0(C%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0)/">不使用中间变量交换两数(C语言实现)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 毛毛独角兽
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
